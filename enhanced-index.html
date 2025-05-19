@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ben e toon - Official Homepage</title>
+    <link rel="stylesheet" href="enhanced-style.css">
+    <script language="javascript">
+        // Simple visitor counter that increments on each visit
+        function incrementCounter() {
+            let count = localStorage.getItem('visitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('counter').textContent = count.toString().padStart(6, '0');
+        }
+        
+        // Function to make elements spin when clicked
+        function spinElement(el) {
+            el.style.transition = "transform 1s";
+            el.style.transform = "rotate(360deg)";
+            setTimeout(() => {
+                el.style.transform = "rotate(0deg)";
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="incrementCounter()">
+    <!-- Container for the entire page -->
+    <div class="container">
+        <!-- Under Construction Banner -->
+        <div class="construction">
+            <img src="assets/under-construction.gif" alt="Under Construction">
+        </div>
+        
+        <!-- Spinning Welcome Text -->
+        <marquee class="retro-marquee" scrollamount="5" behavior="alternate">
+            🌟 Welcome to ben e toon's OFFICIAL WEBSITE! 🌟 Last updated: May 19, 2025 🌟 BOOKMARK THIS PAGE NOW! 🌟
+        </marquee>
+        
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <a href="index.html" onclick="spinElement(this)">Home</a>
+            <a href="about.html" onclick="spinElement(this)">About</a>
+            <a href="js-fun.html" onclick="spinElement(this)">JavaScrimpt</a>
+            <a href="guestbook.html" onclick="spinElement(this)">Guestbook</a>
+            <a href="links.html" onclick="spinElement(this)">Cool Links</a>
+        </div>
+        
+        <!-- Main content section -->
+        <div class="content-section">
+            <h1 onclick="this.style.color = '#' + Math.floor(Math.random()*16777215).toString(16);">ben e toon</h1>
+            <h4 class="blink">certified ® official webpage</h4>
+            
+            <p>Welcome to my new webpage. Keep an eye on this space for big things in the near future!</p>
+            <p>This site is best viewed with <span style="color: yellow;">Netscape Navigator</span> at 800x600 resolution.</p>
+        </div>
+        
+        <!-- Game section -->
+        <div class="content-section">
+            <h2><span class="blink">NEW!!!!</span> GAME</h2>
+            <p>Introducing my Block Blast clone written entirely by Claude Sonnet 3.5!</p>
+            <div style="text-align: center;">
+                <a href="block-blast-game-latest.html" class="retro-button">Play Now!</a>
+            </div>
+        </div>
+        
+        <!-- Visitor counter -->
+        <div class="visitor-counter">
+            <div class="visitor-counter-title">YOU ARE VISITOR NUMBER:</div>
+            <div class="visitor-digits" id="counter">000000</div>
+        </div>
+        
+        <!-- Web badges -->
+        <div class="web-badges">
+            <img src="assets/cs-pu-3d-88x31.gif" alt="Made with Photoshop" onclick="spinElement(this)">
+            <img src="assets/FreeInternetExplorerBadge.gif" alt="Internet Explorer" onclick="spinElement(this)">
+            <img src="assets/NestscapeNow2.0EnhancedBadge.gif" alt="Netscape Now" onclick="spinElement(this)">
+            <img src="assets/best_viewed_with_eyes.gif" alt="Best viewed with eyes" onclick="spinElement(this)">
+            <img src="assets/notepad.gif" alt="Made with Notepad" onclick="spinElement(this)">
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 ben e toon - All rights reserved</p>
+            <p><small>This site contains 0% cookies and 100% nostalgia</small></p>
+            <p><a href="mailto:ben@example.com">Email Me</a> | <a href="#">Back to Top</a></p>
+        </div>
+    </div>
+    
+    <!-- Add a hidden audio file that plays on hover -->
+    <audio id="hover-sound" preload="auto">
+        <source src="assets/beep.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        // Add sound effect to links on hover
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                document.getElementById('hover-sound').play();
+            });
+        });
+    </script>
+</body>
+</html>

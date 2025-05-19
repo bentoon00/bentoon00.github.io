@@ -1,0 +1,247 @@
+/* Enhanced Retro '90s Style CSS */
+body {
+  background-color: black;
+  background-image: url("assets/stars.gif");
+  color: lime;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  cursor: url("assets/cursor.cur"), auto;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Neon text effect */
+h1 {
+  color: #0f0;
+  font-family: "Papyrus", "Comic Sans MS", fantasy;
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
+  animation: neon-flicker 1.5s infinite alternate;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Other headings */
+h2, h3, h4 {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+  font-family: "Papyrus", "Comic Sans MS", fantasy;
+}
+
+/* Basic text */
+p {
+  color: lime;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Links */
+a {
+  color: #ff00ff; /* hot pink */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: yellow;
+  text-decoration: underline;
+  text-shadow: 0 0 5px yellow;
+}
+
+a:visited {
+  color: #cc00cc;
+}
+
+/* Main container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 5px groove #0ff;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Navigation */
+.nav-bar {
+  background: linear-gradient(to right, #000066, #660066);
+  border: 3px outset #00ffff;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.nav-bar a {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 0 5px;
+  background-color: #000033;
+  border: 2px outset #00ffff;
+  border-radius: 5px;
+  color: #00ffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-bar a:hover {
+  background-color: #00ffff;
+  color: #000033;
+  border-style: inset;
+}
+
+/* Sections */
+.content-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 2px ridge #0f0;
+  background-color: rgba(0, 20, 0, 0.5);
+}
+
+/* Marquee styling */
+.retro-marquee {
+  background-color: #000066;
+  color: yellow;
+  padding: 8px 0;
+  border: 2px groove #00ffff;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  padding: 10px;
+  text-align: center;
+  border-top: 2px ridge #0f0;
+}
+
+/* Badge collection */
+.web-badges {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.web-badges img {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #333;
+  background-color: #fff;
+  transition: transform 0.3s;
+}
+
+.web-badges img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Visitor counter */
+.visitor-counter {
+  text-align: center;
+  margin: 20px 0;
+  font-family: "Courier New", monospace;
+  color: #ff0;
+  background-color: #000;
+  border: 2px inset #0f0;
+  padding: 5px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.visitor-counter-title {
+  font-size: 12px;
+  color: #0f0;
+  margin-bottom: 5px;
+}
+
+.visitor-digits {
+  letter-spacing: 2px;
+  font-size: 18px;
+  background: #000;
+  padding: 3px 8px;
+}
+
+/* Under construction */
+.construction {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.construction img {
+  max-width: 100%;
+}
+
+/* Blinking text */
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+/* Animated stars background */
+@keyframes stars {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+
+/* Special buttons */
+.retro-button {
+  background: linear-gradient(to bottom, #ff00ff, #cc00cc);
+  color: white;
+  border: 3px outset #ff00ff;
+  padding: 5px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Comic Sans MS", cursive;
+}
+
+.retro-button:hover {
+  background: linear-gradient(to bottom, #ff66ff, #ff00ff);
+}
+
+.retro-button:active {
+  border-style: inset;
+}
+
+/* Guestbook form */
+.guestbook-form {
+  background-color: #000066;
+  border: 3px ridge #00ffff;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.guestbook-form input, .guestbook-form textarea {
+  background-color: #000033;
+  color: #00ffff;
+  border: 2px inset #0066cc;
+  padding: 5px;
+  margin: 5px 0;
+  width: 100%;
+  font-family: "Comic Sans MS", cursive;
+}
+
+.guestbook-form .retro-button {
+  width: auto;
+  margin-top: 10px;
+}
+
+/* Media queries for better mobile experience */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  
+  .nav-bar a {
+    display: block;
+    margin: 5px 0;
+  }
+}

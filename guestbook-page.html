@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ben e toon - Guestbook</title>
+    <link rel="stylesheet" href="enhanced-style.css">
+    <script language="javascript">
+        // Function to add a guest entry to the page
+        function addGuestEntry() {
+            const name = document.getElementById('guest-name').value;
+            const email = document.getElementById('guest-email').value;
+            const website = document.getElementById('guest-website').value;
+            const message = document.getElementById('guest-message').value;
+            
+            if (!name || !message) {
+                alert("Please fill in your name and message!");
+                return false;
+            }
+            
+            // Get current date
+            const now = new Date();
+            const dateString = now.toLocaleDateString() + ' at ' + now.toLocaleTimeString();
+            
+            // Create new entry HTML
+            const entryHTML = `
+                <div class="guest-entry">
+                    <div class="guest-header">
+                        <strong>${name}</strong> 
+                        ${email ? `<a href="mailto:${email}">[email]</a>` : ''}
+                        ${website ? `<a href="${website}" target="_blank">[website]</a>` : ''}
+                        <span class="guest-date">${dateString}</span>
+                    </div>
+                    <div class="guest-message">${message}</div>
+                </div>
+            `;
+            
+            // Add to guestbook entries
+            const entriesDiv = document.getElementById('guest-entries');
+            entriesDiv.innerHTML = entryHTML + entriesDiv.innerHTML;
+            
+            // Clear form
+            document.getElementById('guestbook-form').reset();
+            
+            // Save to localStorage (in a real site this would be server-side)
+            const entries = JSON.parse(localStorage.getItem('guestbookEntries') || '[]');
+            entries.unshift({ name, email, website, message, date: dateString });
+            localStorage.setItem('guestbookEntries', JSON.stringify(entries));
+            
+            return false;
+        }
+        
+        // Load existing entries
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('guestbookEntries') || '[]');
+            const entriesDiv = document.getElementById('guest-entries');
+            
+            // If no entries yet, add a fake one
+            if (entries.length === 0) {
+                entriesDiv.innerHTML = `
+                    <div class="guest-entry">
+                        <div class="guest-header">
+                            <strong>ben e toon</strong> 
+                            <a href="mailto:ben@example.com">[email]</a>
+                            <span class="guest-date">05/18/2025 at 4:20 PM</span>
+                        </div>
+                        <div class="guest-message">Welcome to my guestbook! Please sign it and be nice! :)</div>
+                    </div>
+                `;
+            } else {
+                let html = '';
+                for (const entry of entries) {
+                    html += `
+                        <div class="guest-entry">
+                            <div class="guest-header">
+                                <strong>${entry.name}</strong> 
+                                ${entry.email ? `<a href="mailto:${entry.email}">[email]</a>` : ''}
+                                ${entry.website ? `<a href="${entry.website}" target="_blank">[website]</a>` : ''}
+                                <span class="guest-date">${entry.date}</span>
+                            </div>
+                            <div class="guest-message">${entry.message}</div>
+                        </div>
+                    `;
+                }
+                entriesDiv.innerHTML = html;
+            }
+        }
+        
+        // Function to make elements spin when clicked
+        function spinElement(el) {
+            el.style.transition = "transform 1s";
+            el.style.transform = "rotate(360deg)";
+            setTimeout(() => {
+                el.style.transform = "rotate(0deg)";
+            }, 1000);
+        }
+    </script>
+    <style>
+        /* Additional guestbook-specific styles */
+        .guest-entry {
+            border: 2px ridge #0ff;
+            background-color: rgba(0, 0, 40, 0.5);
+            margin: 15px 0;
+            padding: 10px;
+        }
+        
+        .guest-header {
+            border-bottom: 1px dashed #0ff;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            color: #ff00ff;
+        }
+        
+        .guest-date {
+            float: right;
+            color: #aaa;
+            font-size: 0.8em;
+        }
+        
+        .guest-message {
+            padding: 5px;
+            color: #0f0;
+        }
+    </style>
+</head>
+<body onload="loadEntries()">
+    <!-- Container for the entire page -->
+    <div class="container">
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <a href="index.html" onclick="spinElement(this)">Home</a>
+            <a href="about.html" onclick="spinElement(this)">About</a>
+            <a href="js-fun.html" onclick="spinElement(this)">JavaScrimpt</a>
+            <a href="guestbook.html" onclick="spinElement(this)">Guestbook</a>
+            <a href="links.html" onclick="spinElement(this)">Cool Links</a>
+        </div>
+        
+        <!-- Guestbook Header -->
+        <div class="content-section">
+            <h1>My Guestbook</h1>
+            <marquee class="retro-marquee" scrollamount="3">
+                🖋️ Sign my guestbook! 🖋️ Leave your mark! 🖋️ Be part of web history! 🖋️
+            </marquee>
+        </div>
+        
+        <!-- Guestbook Form -->
+        <div class="guestbook-form">
+            <h3>Sign the Guestbook</h3>
+            <form id="guestbook-form" onsubmit="return addGuestEntry()">
+                <input type="text" id="guest-name" placeholder="Your Name *" required><br>
+                <input type="email" id="guest-email" placeholder="Your Email (optional)"><br>
+                <input type="url" id="guest-website" placeholder="Your Website (optional)"><br>
+                <textarea id="guest-message" rows="4" placeholder="Your Message *" required></textarea><br>
+                <div style="text-align: center;">
+                    <button type="submit" class="retro-button">Sign Guestbook!</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Guestbook Entries -->
+        <div class="content-section">
+            <h3><img src="assets/new.gif" style="height: 20px;"> Recent Signatures <img src="assets/new.gif" style="height: 20px;"></h3>
+            <div id="guest-entries">
+                <!-- Entries will be loaded here by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Web badges -->
+        <div class="web-badges">
+            <img src="assets/cs-pu-3d-88x31.gif" alt="Made with Photoshop" onclick="spinElement(this)">
+            <img src="assets/FreeInternetExplorerBadge.gif" alt="Internet Explorer" onclick="spinElement(this)">
+            <img src="assets/NestscapeNow2.0EnhancedBadge.gif" alt="Netscape Now" onclick="spinElement(this)">
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 ben e toon - All rights reserved</p>
+            <p><small>This site contains 0% cookies and 100% nostalgia</small></p>
+            <p><a href="mailto:ben@example.com">Email Me</a> | <a href="#">Back to Top</a></p>
+        </div>
+    </div>
+</body>
+</html>
